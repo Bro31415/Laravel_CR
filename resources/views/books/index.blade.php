@@ -14,11 +14,11 @@ ap.min.css">
 ss">
 </head>
 
-<body style="background: rgb(42, 43, 43)">
+<body style="background: rgb(244, 244, 244)">
     <div class="container mt-5">
         <div class="card">
             <div class="card-body">
-                <table class="table table-dark table-striped">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th>Judul</th>
@@ -32,6 +32,16 @@ ss">
                                 <td>{{ $book->judul }}</td>
                                 <td>{{ $book->penulis }}</td>
                                 <td>{{ $book->tgl_rilis }}</td>
+                                <td>
+                                    <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary">Edit</a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('delete', ['id' => $book->id]) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                         @endforelse

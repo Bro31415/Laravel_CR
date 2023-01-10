@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,11 @@ Route::get('/', function () {
 });
 
 Route::resource('/books', \App\Http\Controllers\BookController::class);
+
+Route::get('/create', [\App\Http\Controllers\BookController::class, 'create'])->name('create');
+
+Route::get('/update-book/{id}', [BookController::class, 'getBookbyId'])->name('getBookbyId');
+
+Route::patch('/update-book/{id}', [BookController::class, 'updateBook'])->name('updateBook');
+
+Route::delete('/delete-book/{id}', [BookController::class, 'deleteBook'])->name('delete');
