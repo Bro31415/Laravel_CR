@@ -14,7 +14,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul' => 'required|string|min:5',
+            'judul' => 'required|string|min:5|max:20',
             'penulis' => 'required|string|min:3',
             'tgl_rilis'
         ]);
@@ -60,11 +60,20 @@ class BookController extends Controller
         return view('books.index', compact('books'));
     }
 
-    public function deleteBook($id){
+    public function deleteBook($id)
+    {
         Book::destroy($id);
 
         return redirect(route('books.index'));
     }
 
+    public function getBooktoReviewbyId($id){
+        $book = Book::find($id);
 
+        return view('books.giveReview');
+    }
+
+    public function giveReviews(Book $book){
+        return view('books.givereview');
+    }
 }

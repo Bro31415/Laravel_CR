@@ -27,3 +27,11 @@ Route::get('/update-book/{id}', [BookController::class, 'getBookbyId'])->name('g
 Route::patch('/update-book/{id}', [BookController::class, 'updateBook'])->name('updateBook');
 
 Route::delete('/delete-book/{id}', [BookController::class, 'deleteBook'])->name('delete');
+
+Route::resource('/visitors', \App\Http\Controllers\VisitorController::class);
+
+Route::get('/add-visitors', [\App\Http\Controllers\VisitorController::class, 'create'])->name('create');
+
+Route::get('/review/{id}', [BookController::class, 'getBooktoReviewbyId'])->name('getBooktoReviewbyId');
+
+Route::patch('/review/{id}', [BookController::class, 'giveReviews'])->name('review');
